@@ -74,21 +74,21 @@ class Author:
     
 
     def topic_areas(self):
-     conn = get_connection()
-     cursor = conn.cursor()
-     cursor.execute("""
-        SELECT DISTINCT m.category FROM magazines m
-        JOIN articles a ON m.id = a.magazine_id
-        WHERE a.author_id = ?
-    """, (self.id,))
-     categories = [row[0] for row in cursor.fetchall()]
-     conn.close()
-     return categories
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute("""
+           SELECT DISTINCT m.category FROM magazines m
+           JOIN articles a ON m.id = a.magazine_id
+           WHERE a.author_id = ?
+        """, (self.id,))
+        categories = [row[0] for row in cursor.fetchall()]
+        conn.close()
+        return categories
     
     def add_article(self, magazine, title):
-     from lib.models.article import Article
-     article = Article(title=title, author_id=self.id, magazine_id=magazine.id)
-     article.save()
-     return article
+        from lib.models.article import Article
+        article = Article(title=title, author_id=self.id, magazine_id=magazine.id)
+        article.save()
+        return article
     
   
