@@ -29,7 +29,7 @@ def add_author_with_articles(author_name, articles_data):
         return True
     except Exception as e:
         conn.rollback()
-        print(f" Transaction failed: {e}")
+        print(f"Transaction failed: {e}")
         return False
     finally:
         conn.close()
